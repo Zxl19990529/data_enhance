@@ -40,8 +40,9 @@ def get_bbox(tree):
             continue
     return result
 
-
+count = 0
 for filename in os.listdir(ann_dir):
+    amount = len(os.listdir(ann_dir))
     base_name = filename.split('.')[0]
     xml_file = os.path.join(ann_dir,filename)
     tree = ET.parse(xml_file)
@@ -59,5 +60,5 @@ for filename in os.listdir(ann_dir):
         draw.rectangle((x1,y1,x2,y2))
         draw.text((x1,y1),text)
     img.save(os.path.join(save_dir,base_name+'.jpg'))
-    print(os.path.join(save_dir,base_name+'.jpg'))
+    print(os.path.join(save_dir,base_name+'.jpg'),"\t %d/%d"%(count,amount))
     
